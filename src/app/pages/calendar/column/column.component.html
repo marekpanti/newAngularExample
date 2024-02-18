@@ -1,7 +1,7 @@
 @for (cell of cells; track $index) {
 <div class="cell" (mouseup)="onMouseUp(cell)">
   @if (service.event().horizontalIndex === horizontalIndex &&
-  service.event().verticalIndex === cell) {
+  service.event().verticalIndex === cell && !isDrag) {
     <div class="event" (mousedown)="dragStarted()"></div>
   }
 </div>
