@@ -3,6 +3,12 @@
 
 $my-palette: mat.$indigo-palette;
 
-.body {
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   background: #ecf0f1;
 }

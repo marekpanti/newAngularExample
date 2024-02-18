@@ -1,1 +1,6 @@
-<p>calendar works!</p>
+<div class="calendar" #calendar>
+  <div class="movable" [class.hidden]="!dragStarted" #movable></div>
+  @for (column of columns; track $index) {
+    <app-column [horizontalIndex]="column" [isDrag]="dragStarted" (drag)="onDragChange($event)"></app-column>
+  }
+</div>

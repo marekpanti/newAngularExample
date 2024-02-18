@@ -1,1 +1,8 @@
-<p>column works!</p>
+@for (cell of cells; track $index) {
+<div class="cell" (mouseup)="onMouseUp(cell)">
+  @if (service.event().horizontalIndex === horizontalIndex &&
+  service.event().verticalIndex === cell) {
+    <div class="event" (mousedown)="dragStarted()"></div>
+  }
+</div>
+}
