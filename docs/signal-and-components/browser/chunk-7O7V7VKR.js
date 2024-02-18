@@ -1,0 +1,1 @@
+import{Ja as i,Ka as a,Q as o,Va as r,Wa as m,hb as s}from"./chunk-PED7P55B.js";var l=(()=>{let e=class e{};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=o({type:e,selectors:[["app-empty"]],standalone:!0,features:[m],decls:2,vars:0,template:function(n,d){n&1&&(i(0,"h1"),r(1,"Page does not exist"),a())},dependencies:[s]});let t=e;return t})();export{l as EmptyComponent};
