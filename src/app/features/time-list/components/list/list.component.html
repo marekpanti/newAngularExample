@@ -1,0 +1,8 @@
+<div class="list">
+  @for (item of list; track $index) {
+    <div class="item">
+      {{ item.name }}
+      <button mat-raised-button color="warn" (click)="removeItem(item.id)">remove</button>
+    </div>
+  }
+</div>

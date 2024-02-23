@@ -1,0 +1,119 @@
+  <div class="calendar">
+    <div class="month">
+      <span class="cal-icon" (click)="prev()"
+        > < </span>
+      <div class="date">
+        <span class="calendar-title"
+          ><span
+            appList
+            [listData]="months"
+            [selected]="date.getMonth()"
+            (selectMonth)="setMonth($event)"
+            >{{ months[date.getMonth()] }}
+          </span>
+          <span
+            appList
+            [listData]="getYearRange()"
+            [selected]="15"
+            (selectYear)="setYear($event)"
+            >{{ date.getFullYear() }}
+          </span>
+        </span>
+      </div>
+      <span class="cal-icon" (click)="next()"
+        > > </span>
+    </div>
+    <div class="weekdays">
+      <div>{{ days[0] }}</div>
+      <div>{{ days[1] }}</div>
+      <div>{{ days[2] }}</div>
+      <div>{{ days[3] }}</div>
+      <div>{{ days[4] }}</div>
+      <div>{{ days[5] }}</div>
+      <div>{{ days[6] }}</div>
+    </div>
+    <div class="days">
+      <div class="prev-date" *ngFor="let day of prevDays; let i = index">
+        {{ day }}
+      </div>
+
+      <div
+        *ngFor="let day of currentDaysArray; let i = index"
+        [ngClass]="{
+          today:
+            currentDay.getDate() === i + 1 &&
+            date.getMonth() === currentDay.getMonth() &&
+            date.getFullYear() === currentDay.getFullYear(),
+          selected:
+            clickedDate.getDate() === i + 1 &&
+            clickedDate.getMonth() === date.getMonth() &&
+            clickedDate.getFullYear() === date.getFullYear()
+        }"
+        [tabIndex]="1"
+        (click)="setDate(i)"
+      >
+        {{ day.day }}
+        <span
+          *ngIf="day.total.hours > 0 || day.total.minutes > 0"
+          class="total-hours"
+          >{{ day?.total?.hours }}:{{ day?.total?.minutes }}</span
+        >
+      </div>
+
+      <div class="next-date" *ngFor="let day of lastDays; let i = index">
+        {{ day }}
+      </div>
+    </div>
+    <div class="time">
+      <form [formGroup]="timeForm">
+        <div class="number">
+          <input
+            [value]="timeForm.get('hours')?.value | number : '2.0'"
+            type="number"
+            [class.error]="!timeForm.get('hours')?.valid"
+            formControlName="hours"
+          />
+          <div class="number__actions">
+            <span
+              class="number__actions__item"
+              (click)="increase(timeTypes.HOURS)"
+              >+</span
+            >
+            <span
+              class="number__actions__item"
+              (click)="decrease(timeTypes.HOURS)"
+              >-</span
+            >
+          </div>
+        </div>
+        <span class="time-span">:</span>
+        <div class="number">
+          <input
+            [value]="timeForm.get('minutes')?.value | number : '2.0'"
+            [class.error]="!timeForm.get('minutes')?.valid"
+            type="number"
+            formControlName="minutes"
+          />
+          <div class="number__actions">
+            <span
+              class="number__actions__item"
+              (click)="increase(timeTypes.MINUTES)"
+              >+</span
+            >
+            <span
+              class="number__actions__item"
+              (click)="decrease(timeTypes.MINUTES)"
+              >-</span
+            >
+          </div>
+        </div>
+      </form>
+      <button
+        class="confirm"
+        [disabled]="!clickedDate || !timeForm.valid"
+        (click)="confirm()"
+      >
+        OK
+      </button>
+    </div>
+  </div>

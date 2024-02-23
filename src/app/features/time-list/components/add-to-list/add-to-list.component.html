@@ -1,0 +1,11 @@
+<mat-card>
+  <h3>Add item</h3>
+  <form [formGroup]="addTodoForm">
+    <mat-form-field>
+      <mat-label>Item name</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <app-date-input></app-date-input>
+  </form>
+  <button mat-stroked-button color="primary" [disabled]="!addTodoForm.valid" (click)="submit()">Add</button>
+</mat-card>

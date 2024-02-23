@@ -1,0 +1,9 @@
+<app-add-to-list (formsData)="addTodo($event)"></app-add-to-list>
+<!-- <button (click)="update()">Add to store</button> -->
+@defer (when facade.store.list().length > 0) {
+  <app-list [list]="facade.store.list()"></app-list>
+} @placeholder {
+  <div class="empty-list">
+    <h3>Empty list, please add a new todo item!</h3>
+  </div>
+}
