@@ -1,5 +1,5 @@
 import { signalStore, withState } from '@ngrx/signals';
-import { ListStateModel } from './list.models';
+import { ListStateModel } from './models/list.models';
 
 const initialState: ListStateModel = {
   list: [],

@@ -15,4 +15,5 @@ export interface Item {
   isValid: boolean;
   validUntil: Date;
   status: Statuses;
+  userId: number;
 }

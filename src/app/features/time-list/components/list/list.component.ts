@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Item } from '../../../../shared/store/list.models';
+import { Item } from '../../../../shared/store/models/list.models';
 import { MatButtonModule } from '@angular/material/button';
+import { DatePipe, JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [MatButtonModule],
+  imports: [MatButtonModule, DatePipe, JsonPipe],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
@@ -17,3 +18,4 @@ export class ListComponent {
     this.onRemoveItem.emit(id);
   }
 }
+

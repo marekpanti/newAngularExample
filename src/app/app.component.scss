@@ -1,5 +1,17 @@
+mat-toolbar {
+  display: flex;
+  justify-content: space-around;
+}
+
 .card {
   max-width: 960px;
   width: 90%;
   margin: 5rem auto;
+}
+
+.user {
+  padding: 0.5rem;
+  background: #7f8c8d;
+  border-radius: 40%;
+  color: #fff;
 }

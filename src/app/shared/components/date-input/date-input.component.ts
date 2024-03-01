@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DateTimePickerDirective } from '../calendar/calendar-overlay.directive';
-import { ControlValueAccessor } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -16,6 +16,13 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatInputModule,
   ],
+  providers: [
+    {
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => DateInputComponent),
+        multi: true,
+    },
+],
   templateUrl: './date-input.component.html',
   styleUrls: ['./date-input.component.scss'],
 })

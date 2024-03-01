@@ -1,11 +1,14 @@
 import { Injectable, effect, inject } from '@angular/core';
 import { ListState } from '../../../shared/store/list.store';
 import { getState, patchState } from '@ngrx/signals';
-import { Statuses } from '../../../shared/store/list.models';
+import { Statuses } from '../../../shared/store/models/list.models';
+import { RootStore } from '../../../shared/store/root.store';
 
 @Injectable()
 export class ListFacadeService {
   readonly store = inject(ListState);
+  readonly rootStore = inject(RootStore);
+
   private interval: any;
   // create selectors for example select all valid Items, select all done items
 
@@ -26,16 +29,17 @@ export class ListFacadeService {
     );
   }
 
-  public addItem(name: string, validUntil: Date) {
+  public addItem(event: { name: string; validUntil: Date; userId: number }) {
     patchState(this.store, {
       list: [
         ...this.store.list(),
         {
-          name,
+          name: event.name,
           status: Statuses.NOT_STARTED,
           isValid: true,
-          validUntil,
+          validUntil: event.validUntil,
           id: this.uuidv4(),
+          userId: event.userId
         },
       ],
     });

@@ -5,7 +5,15 @@
       <mat-label>Item name</mat-label>
       <input matInput formControlName="name">
     </mat-form-field>
-    <app-date-input></app-date-input>
+    <app-date-input formControlName="validUntil"></app-date-input>
+    <mat-form-field>
+      <mat-label>Select user</mat-label>
+      <mat-select formControlName="userId">
+        @for (user of users; track user) {
+          <mat-option [value]="user.id">{{user.name}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
   </form>
   <button mat-stroked-button color="primary" [disabled]="!addTodoForm.valid" (click)="submit()">Add</button>
 </mat-card>

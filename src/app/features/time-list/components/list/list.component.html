@@ -1,7 +1,9 @@
 <div class="list">
   @for (item of list; track $index) {
     <div class="item">
-      {{ item.name }}
+      <span>{{ item.name }}</span>
+      <span>{{ item.validUntil | date: 'hh:mm:ss' }}</span>
+      <span [class.notValid]="item.isValid">{{ item.isValid }}</span>
       <button mat-raised-button color="warn" (click)="removeItem(item.id)">remove</button>
     </div>
   }

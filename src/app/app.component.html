@@ -1,13 +1,22 @@
 <mat-toolbar>
   <span>Marek Panti Angular App</span>
-  <button mat-stroked-button [routerLink]="['/time-list']" >
+  <button mat-stroked-button color="secondary" [routerLink]="['/time-list']">
     List
   </button>
-  <button mat-stroked-button [routerLink]="['/calendar']" >
+  <button mat-stroked-button color="primary" [routerLink]="['/calendar']">
     Calendar
   </button>
+  <div class="user" [matMenuTriggerFor]="menu">
+    {{ userService.selectedUser().name }}
+  </div>
+  <mat-menu #menu="matMenu">
+    @for (user of userService.rootStore.users(); track $index) {
+      <button mat-menu-item (click)="selectUser(user.id)">
+        <span> {{ user.name }} </span>
+      </button>
+    }
+  </mat-menu>
 </mat-toolbar>
-
 
 <mat-card class="card">
   <router-outlet></router-outlet>

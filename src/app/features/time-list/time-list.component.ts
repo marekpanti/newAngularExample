@@ -13,7 +13,6 @@ import { ListComponent } from './components/list/list.component';
   styleUrl: './time-list.component.scss',
 })
 export class TimeListComponent implements OnInit, OnDestroy {
-  readonly store = inject(ListState);
   public facade = inject(ListFacadeService)
 
   ngOnInit(): void {
@@ -24,7 +23,11 @@ export class TimeListComponent implements OnInit, OnDestroy {
     this.facade.stopBackgroundInterval();
   }
 
-  addTodo(event: { name: string; validUntil: Date }) {
-    this.facade.addItem(event.name, event.validUntil);
+  addTodo(event: { name: string; validUntil: Date; userId: number }) {
+    this.facade.addItem(event);
+  }
+
+  removeTodo(id: string) {
+    this.facade.removeItem(id);
   }
 }
