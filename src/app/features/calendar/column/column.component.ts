@@ -14,6 +14,7 @@ export class ColumnComponent {
   @Input() isDrag!: boolean;
   @Output() drag = new EventEmitter();
   cells = Array.from(Array(24).keys());
+  dropOver = { horizontalIndex: this.horizontalIndex, verticalIndex: 0 };
 
   constructor(public service: CalendarService) {}
 
@@ -31,5 +32,12 @@ export class ColumnComponent {
     this.drag.emit(true);
     this.isDrag = true;
     console.log('tutok');
+  }
+
+  allowDrop(e: Event, verticalIndex: number) {
+    this.dropOver.horizontalIndex = this.horizontalIndex;
+    this.dropOver.verticalIndex = verticalIndex;
+    console.log(this.dropOver);
+    e.preventDefault();
   }
 }

@@ -1,8 +1,18 @@
 @for (cell of cells; track $index) {
-<div class="cell" (mouseup)="onMouseUp(cell)">
-  @if (service.event().horizontalIndex === horizontalIndex &&
-  service.event().verticalIndex === cell && !isDrag) {
-    <div class="event" (mousedown)="dragStarted()"></div>
-  }
-</div>
+  <div
+    class="cell"
+    [class.over]="
+      dropOver.horizontalIndex === horizontalIndex &&
+      dropOver.verticalIndex === cell && isDrag
+    "
+    (dragover)="allowDrop($event, cell)"
+    (drop)="onMouseUp(cell)"
+  >
+    @if (
+      service.event().horizontalIndex === horizontalIndex &&
+      service.event().verticalIndex === cell
+    ) {
+      <div class="event" draggable="true" (dragstart)="dragStarted()"></div>
+    }
+  </div>
 }
